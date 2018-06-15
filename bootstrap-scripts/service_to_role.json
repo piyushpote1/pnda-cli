@@ -3,8 +3,6 @@
     "console-frontend": {"role": "console_frontend", "port": "80"},
     "package-repository": {"role": "package_repository", "port": "8888"},
     "data-service": {"role": "data_service", "port": "7000"},
-    "jupyter": {"role": "jupyter", "port": "8000"},
-    "kafka": {"role": "kafka", "port": "9092"},
     "kafka-manager": {"role": "kafka_manager", "port": "10900"},
     "logserver": {"role": "logserver", "port": "5601"},
     "opentsdb": {"role": "opentsdb", "port": "4242"},
