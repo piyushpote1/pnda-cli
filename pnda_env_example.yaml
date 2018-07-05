@@ -197,9 +197,15 @@ security:
   SECURITY_MATERIAL_PATH: ./platform-certificates/
 
 features:
-  # Include experimental features. 
-  # Set to "NO", omit setting or omit features section entirely to turn off experimental features
-  EXPERIMENTAL_FEATURES: "NO"
+  # Optional features can be enabled by including them in this list
+  # For example the following list will enable features F1, F2 and F3
+  # - F1
+  # - F2
+  # - F3
+  # Feature names should start with an alphabet and can contain alphabets and numerals (space is not allowed in feature name)
+  # use of special characters in feature names is not recommended, as it can cause conflict with YAML , JSON syntax
+  # Add SPARKMAGIC to features to include sparkmagic.
+  - SPARKMAGIC
 
 domain:
   # Top-level domain

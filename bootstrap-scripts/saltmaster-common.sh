@@ -202,11 +202,15 @@ package_repository:
 EOF
 fi
 
-if [ "x$EXPERIMENTAL_FEATURES" == "xYES" ] ; then
+if [ "x$FEATURES" != "x" ] ; then
 cat << EOF >> /srv/salt/platform-salt/pillar/env_parameters.sls
 features:
-  - EXPERIMENTAL
 EOF
+for feature in $FEATURES; do
+cat << EOF >> /srv/salt/platform-salt/pillar/env_parameters.sls
+  - $feature
+EOF
+done
 fi
 
 if [ "$COMPACTION" == "YES" ] ; then

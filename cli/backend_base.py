@@ -404,11 +404,16 @@ subjectAltName = @alt_names
         client_only = ['AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY', 'PLATFORM_GIT_BRANCH']
         with open('cli/pnda_env_%s.sh' % cluster, 'w') as pnda_env_sh_file:
             for section in self._pnda_env:
-                for setting in self._pnda_env[section]:
-                    if setting not in client_only:
-                        val = '"%s"' % self._pnda_env[section][setting] if isinstance(
-                            self._pnda_env[section][setting], (list, tuple)) else self._pnda_env[section][setting]
-                        pnda_env_sh_file.write('export %s=%s\n' % (setting, val))
+                if self._pnda_env[section] is not None:
+                    if isinstance(self._pnda_env[section], list):
+                        val = '"%s"' % " ".join(self._pnda_env[section])
+                        pnda_env_sh_file.write('export %s=%s\n' % (section.upper(), val))
+                    else:
+                        for setting in self._pnda_env[section]:
+                            if setting not in client_only:
+                                val = '"%s"' % self._pnda_env[section][setting] if isinstance(
+                                       self._pnda_env[section][setting], (list, tuple)) else self._pnda_env[section][setting]
+                                pnda_env_sh_file.write('export %s=%s\n' % (setting, val))
 
     def _bootstrap(self, instance, saltmaster, cluster, flavor, branch,
                    salt_tarball, certs_tarball, error_queue,
